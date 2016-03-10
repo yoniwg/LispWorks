@@ -42,3 +42,31 @@
 		(t nil)
 	)
 )
+
+(defun ballcubediff (radius)
+	(cond
+		((not (numberp radius))  nil)
+		(T	
+			(let 
+				( 
+					(x (ball (list radius)))
+					(y (cube (list (/ (* 2 radius) (sqrt 3) ) )))
+				)
+				(list x y (- x y))
+			)
+		)
+	)
+)
+
+(defun cubeballdiff (edge)
+	(cond
+		((not (numberp edge)) nil)
+		(T	(let(
+					(x (cube (list edge)))
+					(y (ball (list (/ edge 2))))
+				)
+				(list x y (- x y))
+			)
+		)
+	)
+)
