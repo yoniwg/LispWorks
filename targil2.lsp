@@ -5,40 +5,40 @@
 	)
 )
 
-(defun square (prms)
-	(let ((edge (car prms))) (* edge edge))
+(defun square (edge)
+	(expt edge 2)
 )
 
-(defun rectangle (prms) 
-	(* (car prms) (car (cdr prms)))
+(defun rectangle (edge1 edge2) 
+	(* edge1 edge2)
 )
 
-(defun circle (prms) 
-	(let ((radius (car prms))) (* 3.14 radius radius))
+(defun circle (radius) 
+	 (* 3.14 radius radius)
 )
 
-(defun triangle (prms)
-	(/ (* (car prms) (car (cdr prms))) 2)
+(defun triangle (edge alt)
+	(/ (* edge alt) 2)
 )
 
-(defun ball (prms)
-	(let ((radius (car prms))) (* 3.14 (/ 4 3) radius radius radius))
+(defun ball (radius)
+	(* 3.14 (/ 4 3) (expt radius 3))
 )
 
-(defun cube (prms) 
-	(let ((edge (car prms))) (* edge edge edge))
+(defun cube (edge) 
+	(expt edge 3)
 )
 
 (defun shapecalc (sname prmlist)
-	(and 
+	(cond 
 		((not (listp prmlist)) nil)
 		((not (numberlistp prmlist)) nil)
-		((and (equal sname 'square) 	(= (length prmlist) 1)) (square prmlist))
-		((and (equal sname 'rectangle) 	(= (length prmlist) 2)) (rectangle prmlist))
-		((and (equal sname 'circle) 	(= (length prmlist) 1)) (circle prmlist))
-		((and (equal sname 'triangle) 	(= (length prmlist) 1)) (triangle prmlist))
-		((and (equal sname 'ball) 		(= (length prmlist) 1)) (ball prmlist))
-		((and (equal sname 'cube) 		(= (length prmlist) 1)) (cube prmlist))
+		((and (equal sname 'square) 	(= (length prmlist) 1)) (square (car prmlist)))
+		((and (equal sname 'rectangle) 	(= (length prmlist) 2)) (rectangle (car prmlist) (cadr prmlist)))
+		((and (equal sname 'circle) 	(= (length prmlist) 1)) (circle (car prmlist)))
+		((and (equal sname 'triangle) 	(= (length prmlist) 2)) (triangle (car prmlist) (cadr prmlist)))
+		((and (equal sname 'ball) 		(= (length prmlist) 1)) (ball (car prmlist)))
+		((and (equal sname 'cube) 		(= (length prmlist) 1)) (cube (car prmlist)))
 		(t nil)
 	)
 )
@@ -48,8 +48,8 @@
 		(numberp radius)
 		(let 
 			( 
-				(x (ball (list radius)))
-				(y (cube (list (/ (* 2 radius) (sqrt 3) ) )))
+				(x (ball radius))
+				(y (cube (/ (* 2 radius) (sqrt 3) )))
 			)
 			(list x y (- x y))
 		)
@@ -61,8 +61,8 @@
 		(numberp edge)
 		(let
 			(
-				(x (cube (list edge)))
-				(y (ball (list (/ edge 2))))
+				(x (cube edge))
+				(y (ball (/ edge 2)))
 			)
 			(list x y (- x y))
 		)
