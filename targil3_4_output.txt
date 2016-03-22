@@ -1,0 +1,29 @@
+
+CL-USER 1 > (num2digit 123)
+2
+
+CL-USER 2 > (num2digit 132)
+2
+
+CL-USER 3 > (num2digit 213)
+2
+
+CL-USER 4 > (num2digit 231)
+2
+
+CL-USER 5 > (num2digit 312)
+2
+
+CL-USER 6 > (num2digit 321)
+2
+
+CL-USER 7 > (num2digit 'rr)
+"incorrect input"
+
+CL-USER 8 > (num2digit '(2431))
+"incorrect input"
+
+CL-USER 9 > (num2digit '(2 4 1))
+"incorrect input"
+
+CL-USER 10 > 

@@ -1,0 +1,26 @@
+
+CL-USER 1 > (middlenum '(1 2 3))
+2
+
+CL-USER 2 > (middlenum '(1 3 2))
+2
+
+CL-USER 3 > (middlenum '(2 1 3))
+2
+
+CL-USER 4 > (middlenum '(2 3 1))
+2
+
+CL-USER 5 > (middlenum '(3 1 2))
+2
+
+CL-USER 6 > (middlenum '(3 2 1))
+2
+
+CL-USER 7 > (middlenum 'not_list)
+"incorrect input"
+
+CL-USER 8 > (middlenum 123)
+"incorrect input"
+
+CL-USER 9 > 
