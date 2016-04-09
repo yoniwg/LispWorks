@@ -34,10 +34,10 @@
 (defun pi-map-reduce (func-name num-list)
 	(if (null num-list) 
 		0
-		(coerce (+ 
+		(+ 
 			(funcall func-name (car num-list)) 
 			(pi-map-reduce func-name (cdr num-list))
-		) 'double-float)
+		)
 	)
 )
 
@@ -53,6 +53,16 @@
 	(pi-map-reduce (cdr (assoc 'pi3 func-assoc-list))(num-to-k k))
 )
 
+(defun picalcp (pi-func k)
+	(and
+		(assoc pi-func func-assoc-list)
+		(integerp k)
+	)
+)
+
 (defun picalc (pi-func k)
-	(funcall pi-func k)
+	(if (picalcp pi-func k)
+		(coerce (funcall pi-func k) 'double-float)
+		"incorrect input"
+	)
 )

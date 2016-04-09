@@ -43,6 +43,16 @@
 	(reduce #'+ (mapcar (cdr (assoc 'pi3 func-assoc-list))(num-to-k k)))
 )
 
+(defun picalcp (pi-func k)
+	(and
+		(assoc pi-func func-assoc-list)
+		(integerp k)
+	)
+)
+
 (defun picalc (pi-func k)
-	(coerce (funcall pi-func k) 'double-float)
+	(if (picalcp pi-func k)
+		(coerce (funcall pi-func k) 'double-float)
+		"incorrect input"
+	)
 )
